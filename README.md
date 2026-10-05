@@ -2,9 +2,9 @@
 
 My portfolio website, showcasing my projects, technical skills, and interests in software development and QA testing.
 
-🌐 Live website: jonathanilori.com
+🌐 Live website: [jonathanilori.com](https://jonathanilori.com/)
 
-About
+# About
 
 I’m a Computer Programming graduate who enjoys building applications, automation tools, and bots.
 
