@@ -61,9 +61,9 @@ img {
   --shadow-dock: 0 8px 40px rgba(20, 20, 15, 0.10), 0 2px 8px rgba(20, 20, 15, 0.05);
 
   /* Fonts */
-  --font-display: 'Instrument Serif', 'Times New Roman', Georgia, serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  --font-mono: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  --font-display: 'Newsreader', 'Times New Roman', Georgia, serif;
+  --font-body: 'Geist', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Geist Mono', 'SF Mono', Consolas, monospace;
 
   /* Type scale (fluid) */
   --text-xs: 0.75rem;
@@ -264,12 +264,12 @@ section {
 }
 
 .section-label {
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.18em;
-  color: var(--ink-mute);
+  letter-spacing: 0.14em;
+  color: var(--ink-soft);
   margin-bottom: var(--space-8);
   display: flex;
   align-items: baseline;
@@ -299,87 +299,59 @@ section {
   font-weight: 600;
 }
 
-/* ============================================
-   SKILLS — grouped + icon pills
-   ============================================ */
-.skills-group {
-  margin-bottom: var(--space-6);
+/* About sub-lists (experience / education / interests) */
+.about-block {
+  margin-top: var(--space-8);
 }
 
-.skills-group:last-child {
-  margin-bottom: 0;
-}
-
-.skills-category {
+.about-heading {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
-  font-weight: 600;
+  font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   color: var(--ink-mute);
-  margin-bottom: var(--space-3);
-  padding-bottom: var(--space-2);
-  border-bottom: 1px solid var(--line);
-  display: inline-block;
+  margin-bottom: var(--space-2);
 }
 
-.skills-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
+.about-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
 }
 
-.skills-list li {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-2);
-  padding: 6px 14px 6px 10px;
-  font-family: var(--font-body);
+.about-list li {
+  position: relative;
+  padding-left: var(--space-4);
   font-size: var(--text-sm);
-  color: var(--ink-soft);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  transition: all var(--transition-fast);
-  white-space: nowrap;
+  line-height: 1.7;
+  color: var(--ink-mute);
 }
 
-.skills-list li:hover {
+/* Custom bullet — a quiet middle dot instead of the default disc */
+.about-list li::before {
+  content: "·";
+  position: absolute;
+  left: 0;
+  color: var(--ink-faint);
+}
+
+.about-list li strong {
   color: var(--ink);
-  border-color: var(--ink-faint);
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(20, 20, 15, 0.06);
+  font-weight: 600;
 }
 
-.skills-list li i {
-  font-size: 1.05rem;
-  line-height: 1;
-  display: inline-flex;
-}
-
-/* Fallback dot for skills without brand icons */
-.skill-dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
-  background: #10b981;
-}
-
-/* Small mobile */
-@media (max-width: 480px) {
-  .skills-list li {
-    font-size: var(--text-xs);
-    padding: 4px 12px 4px 8px;
-  }
-
-  .skills-list li i {
-    font-size: 0.95rem;
-  }
+/* Italic serif one-liner under the work section label */
+.work-tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--ink-soft);
+  margin-top: calc(-1 * var(--space-5));
+  margin-bottom: var(--space-8);
 }
 
 /* ============================================
@@ -760,15 +732,16 @@ textarea.form-input {
   transform: translateY(0);
 }
 
-/* Staggered delays via data-index (no inline styles) */
-.editorial-entry[data-index="0"] { transition-delay: 0ms; }
-.editorial-entry[data-index="1"] { transition-delay: 60ms; }
-.editorial-entry[data-index="2"] { transition-delay: 120ms; }
-.editorial-entry[data-index="3"] { transition-delay: 180ms; }
-.editorial-entry[data-index="4"] { transition-delay: 240ms; }
-.editorial-entry[data-index="5"] { transition-delay: 300ms; }
-.editorial-entry[data-index="6"] { transition-delay: 360ms; }
-.editorial-entry[data-index="7"] { transition-delay: 420ms; }
+/* Staggered delays via data-index (no inline styles) —
+   .reveal matches both project cards and certificate entries */
+.reveal[data-index="0"] { transition-delay: 0ms; }
+.reveal[data-index="1"] { transition-delay: 60ms; }
+.reveal[data-index="2"] { transition-delay: 120ms; }
+.reveal[data-index="3"] { transition-delay: 180ms; }
+.reveal[data-index="4"] { transition-delay: 240ms; }
+.reveal[data-index="5"] { transition-delay: 300ms; }
+.reveal[data-index="6"] { transition-delay: 360ms; }
+.reveal[data-index="7"] { transition-delay: 420ms; }
 
 /* ============================================
    RESPONSIVE (mobile-first)
@@ -897,41 +870,161 @@ textarea.form-input {
     page-break-inside: avoid;
   }
 
-  .editorial-entry {
+  .editorial-entry,
+  .project-card {
     page-break-inside: avoid;
   }
 }
-/* Featured project actions */
-.project-links {
+/* ============================================
+   PROJECT CARDS
+   ============================================ */
+.card-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
-  margin-top: var(--space-4);
+  gap: var(--space-4);
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-.project-link {
+
+.project-card {
+  /* Mobile: each card takes the full row */
+  flex: 1 1 100%;
+  min-width: 0;
+
+  /* Column layout inside the card so links can pin to the bottom */
+  display: flex;
+  flex-direction: column;
+
+  padding: var(--space-6);
+  background: var(--paper-raise);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  transition:
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base);
+}
+
+.project-card:hover {
+  border-color: var(--ink-faint);
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(20, 20, 15, 0.07), 0 2px 8px rgba(20, 20, 15, 0.04);
+}
+
+[data-theme="dark"] .project-card:hover {
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+/* Tech-stack eyebrow */
+.card-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-faint);
+  margin-bottom: var(--space-3);
+}
+
+.card-title {
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(1.35rem, 2vw, 1.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+  margin-bottom: var(--space-2);
+}
+
+.card-desc {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--ink-mute);
+  margin-bottom: var(--space-5);
+}
+
+/* margin-top:auto pushes links to the card's bottom edge,
+   so buttons align across cards with different text lengths */
+.card-links {
+  margin-top: auto;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+/* Card buttons — shared base */
+.card-btn {
   display: inline-flex;
   align-items: center;
   gap: var(--space-2);
-  min-height: 44px;
-  padding: 8px 16px;
-  border: 1px solid var(--line);
+  min-height: 38px;
+  padding: 7px 15px;
   border-radius: 999px;
-  color: var(--ink-soft);
-  font-size: var(--text-sm);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  letter-spacing: 0.01em;
   text-decoration: none;
-  transition: background var(--transition-fast), color var(--transition-fast);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
 }
-.project-link:hover {
-  background: var(--ink);
-  color: var(--paper);
+
+.card-btn:active {
+  transform: scale(0.97);
 }
-.project-link:focus-visible {
+
+.card-btn:focus-visible {
   outline: 2px solid var(--ink);
   outline-offset: 3px;
 }
-.project-private {
-  align-self: center;
-  color: var(--ink-mute);
-  font-size: var(--text-xs);
+
+/* Primary — filled, draws the eye to the live demo */
+.card-btn--primary {
+  background: var(--ink);
+  color: var(--paper);
+  border: 1px solid var(--ink);
 }
-#projects .editorial-entry { grid-template-columns: 1fr; }
+
+.card-btn--primary:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+/* Ghost — outlined, secondary action */
+.card-btn--ghost {
+  background: transparent;
+  color: var(--ink-soft);
+  border: 1px solid var(--line);
+}
+
+.card-btn--ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* Dashed badge for private repos — reads as a state, not a button */
+.card-badge {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 7px 15px;
+  border: 1px dashed var(--line);
+  border-radius: 999px;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--ink-faint);
+}
+
+/* Two columns from tablet up; calc subtracts the gap's share
+   so two cards + one gap fill the row exactly */
+@media (min-width: 640px) {
+  .card-grid {
+    gap: var(--space-5);
+  }
+
+  .project-card {
+    flex: 1 1 calc(50% - var(--space-5) / 2);
+  }
+}
